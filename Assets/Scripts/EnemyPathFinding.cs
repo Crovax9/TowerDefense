@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyPathFinding : MonoBehaviour
 {
     public float speed = 10.0f;
 

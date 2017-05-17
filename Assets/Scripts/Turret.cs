@@ -5,12 +5,21 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     private Transform target;
+
     public float range = 15f;
+    public float fireRate = 1.0f;
+    private float fireCountdown = 0.0f;
+
 
     public string enemyTag = "Enemy";
 
     public Transform rotatePoint;
     public float damping = 10f;
+
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+
+    
 
     private void Start()
     {
@@ -25,6 +34,25 @@ public class Turret : MonoBehaviour
         }
 
         TurretLookRotation();
+
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
+        }
+
+        fireCountdown -= Time.deltaTime;
+    }
+
+    void Shoot()
+    {
+        GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, rotatePoint.rotation) as GameObject;
+        Bullet bullet = bulletGO.GetComponent<Bullet>();
+
+        if (bullet != null)
+        {
+            bullet.Seek(target);
+        }
     }
 
     void TurretLookRotation()

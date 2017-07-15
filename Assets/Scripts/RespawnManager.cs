@@ -13,7 +13,7 @@ public class RespawnManager : MonoBehaviour
     public Text countDownText;
 
     private int waveIndex = 0;
-    private int respawnNumberOfEnemy = 10;
+    private int respawnNumberOfEnemy = 5;
 
     private WaitForSeconds spawnDelay = new WaitForSeconds(0.5f);
 
